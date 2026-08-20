@@ -1,0 +1,5 @@
+The folder is for generated icons 
+structure : 
+ - icons 
+    - *.js
+ - index.js
