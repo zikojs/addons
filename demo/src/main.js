@@ -1,8 +1,15 @@
-// Lottie
-import { LottiePlayer } from "zextra-plus/lottie";
-const Lottie = LottiePlayer("https://assets1.lottiefiles.com/private_files/lf30_q2okh8lh.json").size("300px", "300px").style({
-    border : "1px darkblue solid"
+// GSAP 
+import {gsap} from '@zikojs/gsap';
+import { tags } from 'ziko/dom'
+
+const { div } = tags;
+
+const el = div().style({
+    width : '200px',
+    height : '200px',
+    background : 'red'
 })
 
-Lottie.useControls()
-Lottie.mount(document.body)
+el.mount(document.body)
+
+gsap.to(el, {rotation: 360, x: 100, duration: 1});

@@ -1,0 +1,52 @@
+{
+  "name": "@zikojs/gsap",
+  "version": "0.1.0",
+  "description": "GSAP adapter for zikojs",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=development rollup --config rollup.config.js",
+    "watch": "cross-env NODE_ENV=development rollup --config rollup.config.js -w",
+    "build": "cross-env NODE_ENV=production rollup --config rollup.config.js"
+  },
+  "author": "zakaria elaloui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zikojs/addons.git",
+    "directory": "packages/gsap"
+  },
+  "keywords": [
+    "zikojs",
+    "ziko",
+    "gsap",
+    "animation"
+  ],
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "types": "./src/index.d.ts"
+    }
+  },
+  "files": [
+    "src",
+    "dist",
+    "LICENCE"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^29.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^1.0.0",
+    "cross-env": "^10.1.0",
+    "rollup": "^4.62.4"
+  },
+  "dependencies": {
+    "@lottiefiles/lottie-player": "^2.0.12",
+    "gsap": "^3.15.0",
+    "zextra": "^1.13.0",
+    "ziko": "^1.8.0"
+  }
+}
