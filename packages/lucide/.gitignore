@@ -1,0 +1,3 @@
+node_modules/
+generated-src/index.js
+generated-src/icons/*.js
