@@ -1,9 +1,11 @@
 {
-  "name": "zextra-plus",
-  "version": "0.1.0",
-  "description": "Extra built in zikojs components built on the top of 3rd party libraries",
-  "main": "index.js",
+  "name": "@zikojs/lottie",
+  "version": "0.0.0",
+  "description": "Lottie player element for zikojs",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env NODE_ENV=development rollup --config rollup.config.js",
@@ -13,14 +15,14 @@
   "author": "zakaria elaloui",
   "keywords": [
     "zikojs",
-    "zikojs-addons",
+    "ziko",
     "lottiefiles",
     "lottie-web",
     "animation"
   ],
   "exports": {
-    "./*" : {
-      "import" : "./src/*/index.js"
+    ".": {
+      "import" : "./src/index.js"
     }
   },
   "files": [
@@ -30,15 +32,15 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^29.0.2",
+    "@rollup/plugin-commonjs": "^29.0.3",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser": "^1.0.0",
     "cross-env": "^10.1.0",
-    "rollup": "^4.60.0"
+    "rollup": "^4.62.4"
   },
   "dependencies": {
     "@lottiefiles/lottie-player": "^2.0.12",
-    "zextra": "^1.1.0",
-    "ziko": "^1.0.0"
+    "zextra": "^1.13.0",
+    "ziko": "^1.8.0"
   }
 }
