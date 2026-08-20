@@ -1,6 +1,6 @@
 {
   "name": "@zikojs/lottie",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Lottie player element for zikojs",
   "type": "module",
   "publishConfig": {
@@ -13,6 +13,11 @@
     "build": "cross-env NODE_ENV=production rollup --config rollup.config.js"
   },
   "author": "zakaria elaloui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zikojs/addons.git",
+    "directory": "packages/lottie"
+  },
   "keywords": [
     "zikojs",
     "ziko",
