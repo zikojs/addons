@@ -22,7 +22,8 @@
   ],
   "exports": {
     ".": {
-      "import" : "./src/index.js"
+      "import" : "./src/index.js",
+      "types" : "./src/index.d.ts"
     }
   },
   "files": [
