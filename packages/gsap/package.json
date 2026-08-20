@@ -1,6 +1,6 @@
 {
   "name": "@zikojs/gsap",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "GSAP adapter for zikojs",
   "type": "module",
   "publishConfig": {
@@ -44,7 +44,6 @@
     "rollup": "^4.62.4"
   },
   "dependencies": {
-    "@lottiefiles/lottie-player": "^2.0.12",
     "gsap": "^3.15.0",
     "zextra": "^1.13.0",
     "ziko": "^1.8.0"
