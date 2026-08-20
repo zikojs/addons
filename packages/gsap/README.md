@@ -33,11 +33,11 @@ gsap.to(box, {
 
 ## Features
 
-***🎯 UIElement targets*** : Use ZikoJS UIElement directly as a GSAP target.
-***📦 UIElement arrays*** : Animate UIElement[] without manually accessing .element.
-***🔀 Mixed targets*** : Combine UIElement and HTMLElement targets.
-***🧩 Same GSAP API*** : No new syntax or alternative animation API.
-***🔌 Drop-in adapter*** : Works as a thin layer on top of GSAP.
-***🌐 Native DOM support*** : Existing HTMLElement targets continue to work.
-***⏱️ Timeline support*** : Use UIElement targets with GSAP timelines.
-***🪶 Lightweight*** : Only adapts targets; GSAP handles the animation itself.
+- ***🎯 UIElement targets*** : Use ZikoJS UIElement directly as a GSAP target.
+- ***📦 UIElement arrays*** : Animate UIElement[] without manually accessing .element.
+- ***🔀 Mixed targets*** : Combine UIElement and HTMLElement targets.
+- ***🧩 Same GSAP API*** : No new syntax or alternative animation API.
+- ***🔌 Drop-in adapter*** : Works as a thin layer on top of GSAP.
+- ***🌐 Native DOM support*** : Existing HTMLElement targets continue to work.
+- ***⏱️ Timeline support*** : Use UIElement targets with GSAP timelines.
+- ***🪶 Lightweight*** : Only adapts targets; GSAP handles the animation itself.
