@@ -1,6 +1,6 @@
 {
   "name": "@zikojs/lucide",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Lucide Icons for ZikoJs",
   "keywords": [
     "zikojs",
@@ -39,8 +39,14 @@
     "generate": "node ./scripts/generate.js"
   },
   "dependencies": {
-    "create-vite": "^9.1.2",
     "lucide": "^1.30.0",
-    "ziko": "^1.8.0"
+    "ziko": "catalog:"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "catalog:",
+    "@rollup/plugin-node-resolve": "catalog:",
+    "@rollup/plugin-terser": "catalog:",
+    "cross-env": "catalog:",
+    "rollup": "catalog:"
   }
 }

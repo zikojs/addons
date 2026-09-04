@@ -35,14 +35,14 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^29.0.3",
-    "@rollup/plugin-node-resolve": "^16.0.3",
-    "@rollup/plugin-terser": "^1.0.0",
-    "cross-env": "^10.1.0",
-    "rollup": "^4.62.4"
+    "@rollup/plugin-commonjs": "catalog:",
+    "@rollup/plugin-node-resolve": "catalog:",
+    "@rollup/plugin-terser": "catalog:",
+    "cross-env": "catalog:",
+    "rollup": "catalog:"
   },
   "dependencies": {
     "atropos": "^2.0.2",
-    "ziko": "^1.8.0"
+    "ziko": "catalog:"
   }
 }

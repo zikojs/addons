@@ -1,6 +1,6 @@
 {
   "name": "@zikojs/lottie",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Lottie player element for zikojs",
   "type": "module",
   "publishConfig": {
@@ -38,15 +38,15 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^29.0.3",
-    "@rollup/plugin-node-resolve": "^16.0.3",
-    "@rollup/plugin-terser": "^1.0.0",
-    "cross-env": "^10.1.0",
-    "rollup": "^4.62.4"
+    "@rollup/plugin-commonjs": "catalog:",
+    "@rollup/plugin-node-resolve": "catalog:",
+    "@rollup/plugin-terser": "catalog:",
+    "cross-env": "catalog:",
+    "rollup": "catalog:"
   },
   "dependencies": {
     "@lottiefiles/lottie-player": "^2.0.12",
-    "zextra": "^1.13.0",
-    "ziko": "^1.8.0"
+    "zextra": "catalog:",
+    "ziko": "catalog:"
   }
 }
