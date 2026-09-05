@@ -1,5 +1,6 @@
 import { UIElement } from 'ziko/dom'
 import { call_with_optional_props } from 'ziko/dom/internal-utils'
+
 import mermaid from 'mermaid'
 
 mermaid.initialize({
@@ -29,19 +30,22 @@ export class UIMermaid extends UIElement {
 
     const id = `mermaid-${crypto.randomUUID().slice(-17)}`
 
-    const definition = Object.keys(mermaidConfig).length
-      ? `%%{init: ${JSON.stringify(mermaidConfig)}}%%\n${this.code}`
-      : this.code
+    let definition = ''
+
+    if (title) {
+      definition += `---\ntitle: ${title}\n---\n`
+    }
+
+    if (Object.keys(mermaidConfig).length) {
+      definition += `%%{init: ${JSON.stringify(mermaidConfig)}}%%\n`
+    }
+
+    definition += this.code
 
     mermaid
       .render(id, definition)
       .then(({ svg, bindFunctions }) => {
         this.element.innerHTML = svg
-
-        if (title) {
-          this.element.setAttribute('aria-label', title)
-        }
-
         bindFunctions?.(this.element)
       })
       .catch(error => {
