@@ -12,6 +12,7 @@
     "vite": "catalog:"
   },
   "dependencies": {
-    "ziko": "catalog:"
+    "ziko": "catalog:",
+    "@zikojs/mermaid": "workspace:*"
   }
 }
