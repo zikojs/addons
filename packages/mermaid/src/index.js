@@ -2,6 +2,7 @@ import { UIElement } from 'ziko/dom'
 import { call_with_optional_props } from 'ziko/dom/internal-utils'
 
 import mermaid from 'mermaid'
+import YAML from 'yaml'
 
 mermaid.initialize({
   startOnLoad: false,
@@ -9,7 +10,7 @@ mermaid.initialize({
 })
 
 export class UIMermaid extends UIElement {
-  constructor({ title = '', theme = 'default', ...config } = {}, code) {
+  constructor({ title = '', type = '', direction = '', ...rest } = {}, code = '') {
     super({
       element: 'div',
       name: 'ziko-mermaid'
@@ -17,8 +18,9 @@ export class UIMermaid extends UIElement {
 
     this.config = {
       title,
-      theme,
-      ...config
+      type,
+      direction,
+      ...rest
     }
 
     this.code = code
@@ -26,21 +28,35 @@ export class UIMermaid extends UIElement {
   }
 
   _render() {
-    const { title, ...mermaidConfig } = this.config
+    const { title, type, direction, ...configProps } = this.config
 
     const id = `mermaid-${crypto.randomUUID().slice(-17)}`
 
     let definition = ''
 
-    if (title) {
-      definition += `---\ntitle: ${title}\n---\n`
+    // 1. Frontmatter generation
+    if (title || Object.keys(configProps).length) {
+      const frontmatterObject = {
+        ...(title && { title }),
+        ...(Object.keys(configProps).length && { config: configProps })
+      }
+
+      const frontmatter = YAML.stringify(frontmatterObject)
+      definition += `---\n${frontmatter}---\n`
     }
 
-    if (Object.keys(mermaidConfig).length) {
-      definition += `%%{init: ${JSON.stringify(mermaidConfig)}}%%\n`
+    // 2. Prepend diagram type and direction if provided separately from code
+    if (type) {
+      definition += `${type}${direction ? ' ' + direction : ''}\n`
     }
 
-    definition += this.code
+    const cleanCode = this.code
+      .split('\n')
+      .map(line => line.trim())
+      .filter(Boolean)
+      .join('\n  ')
+
+    definition += cleanCode
 
     mermaid
       .render(id, definition)

@@ -3,16 +3,13 @@ import { Mermaid } from '@zikojs/mermaid'
 globalThis.m = Mermaid(
     {
         theme : 'forest',
-        title : 'ttt',
-        // flowchart: {
-        //     curve: 'basis'
-        // },
+        title : 'Test',
         fontFamily : 'verdana',
+        type : 'flowchart',
+        direction : 'TD'
     },
      `
-        flowchart LR
-
-          A[VanJS] --> B[Component]
+          A[Zikojs] --> B[Component]
           B --> C[DOM]
           C --> D[Browser]
       `

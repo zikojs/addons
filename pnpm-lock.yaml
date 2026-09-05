@@ -251,7 +251,7 @@ importers:
         version: 4.63.1
       vite:
         specifier: 'catalog:'
-        version: 8.2.2(terser@5.51.2)
+        version: 8.2.2(terser@5.51.2)(yaml@2.9.0)
       ziko:
         specifier: 2.0.0-beta.4
         version: 2.0.0-beta.4
@@ -267,7 +267,7 @@ importers:
     devDependencies:
       vite:
         specifier: 'catalog:'
-        version: 8.2.2(terser@5.51.2)
+        version: 8.2.2(terser@5.51.2)(yaml@2.9.0)
 
   packages/atropos:
     dependencies:
@@ -380,6 +380,9 @@ importers:
       mermaid:
         specifier: ^11.17.2
         version: 11.17.2
+      yaml:
+        specifier: ^2.9.0
+        version: 2.9.0
       zextra:
         specifier: 'catalog:'
         version: 1.15.0
@@ -1442,6 +1445,11 @@ packages:
     engines: {node: '>= 8'}
     hasBin: true
 
+  yaml@2.9.0:
+    resolution: {integrity: sha512-2AvhNX3mb8zd6Zy7INTtSpl1F15HW6Wnqj0srWlkKLcpYl/gMIMJiyuGq2KeI2YFxUPjdlB+3Lc10seMLtL4cA==}
+    engines: {node: '>= 14.6'}
+    hasBin: true
+
   zextra@1.15.0:
     resolution: {integrity: sha512-dkcYmzPR1Zu/+kAAUt8pwtX+lgu83NXFANNBMIr4p/bT8qLS/iC2MisQqE2Smh65gRIt1utqMkVc/bj8IHdOdQ==}
     hasBin: true
@@ -2381,7 +2389,7 @@ snapshots:
 
   uuid@14.0.2: {}
 
-  vite@8.2.2(terser@5.51.2):
+  vite@8.2.2(terser@5.51.2)(yaml@2.9.0):
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.7
@@ -2391,10 +2399,13 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
       terser: 5.51.2
+      yaml: 2.9.0
 
   which@2.0.2:
     dependencies:
       isexe: 2.0.0
+
+  yaml@2.9.0: {}
 
   zextra@1.15.0:
     dependencies:

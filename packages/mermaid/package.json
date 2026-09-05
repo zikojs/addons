@@ -1,6 +1,6 @@
 {
   "name": "@zikojs/mermaid",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "description": "Mermaid adapter for zikojs",
   "type": "module",
   "publishConfig": {
@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "mermaid": "^11.17.2",
+    "yaml": "^2.9.0",
     "zextra": "catalog:",
     "ziko": "catalog:"
   }
