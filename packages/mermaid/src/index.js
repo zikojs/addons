@@ -24,10 +24,10 @@ export class UIMermaid extends UIElement {
     }
 
     this.code = code
-    this._render()
+    this.render()
   }
 
-  _render() {
+  render() {
     const { title, type, direction, ...configProps } = this.config
 
     const id = `mermaid-${crypto.randomUUID().slice(-17)}`
