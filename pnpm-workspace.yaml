@@ -4,7 +4,7 @@ packages:
 
 # Define a catalog of version ranges.
 catalog:
-  ziko: ^2.0.0-beta.4
+  ziko: 2.0.0-beta.9
   zextra: ^1.15.0
   vite: ^8.2.2
   "@rollup/plugin-commonjs": "^29.0.3"
@@ -14,4 +14,4 @@ catalog:
   "rollup": "^4.63.1"
 
 minimumReleaseAgeExclude:
-  - ziko@2.0.0-beta.4
+  - ziko@2.0.0-beta.9

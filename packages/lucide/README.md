@@ -1,16 +1,16 @@
-# ziko-lucide
+# @zikojs/lucide
 Lucide Icons for ZikoJs 
 
 ## Installation 
 
 ```bash
-npm i ziko-lucide 
+npm i @zikojs/lucide 
 ```
 
 ## Usage
 
 ```js
-import {Activity} from 'ziko-lucide'
+import {Activity} from '@zikojs/lucide'
 
 Activity({
     stroke : 'darkblue'

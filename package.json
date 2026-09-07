@@ -25,6 +25,6 @@
     "cross-env": "catalog:",
     "rollup": "catalog:",
     "vite": "catalog:",
-    "ziko": "2.0.0-beta.4"
+    "ziko": "2.0.0-beta.9"
   }
 }
