@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "ziko": "catalog:",
-    "@zikojs/mermaid": "workspace:*"
+    "@zikojs/mermaid": "workspace:*",
+    "@zikojs/p5": "workspace:*",
+    "@zikojs/gsap": "workspace:*"
   }
 }

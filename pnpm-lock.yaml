@@ -258,9 +258,15 @@ importers:
 
   demo:
     dependencies:
+      '@zikojs/gsap':
+        specifier: workspace:*
+        version: link:../packages/gsap
       '@zikojs/mermaid':
         specifier: workspace:*
         version: link:../packages/mermaid
+      '@zikojs/p5':
+        specifier: workspace:*
+        version: link:../packages/p5
       ziko:
         specifier: 'catalog:'
         version: 2.0.0-beta.9
