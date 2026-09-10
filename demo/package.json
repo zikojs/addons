@@ -16,6 +16,7 @@
     "@zikojs/mermaid": "workspace:*",
     "@zikojs/p5": "workspace:*",
     "@zikojs/gsap": "workspace:*",
-    "@zikojs/leaflet": "workspace:*"
+    "@zikojs/leaflet": "workspace:*",
+    "@zikojs/confetti": "workspace:*"
   }
 }

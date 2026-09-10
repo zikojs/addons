@@ -258,6 +258,9 @@ importers:
 
   demo:
     dependencies:
+      '@zikojs/confetti':
+        specifier: workspace:*
+        version: link:../packages/confetti
       '@zikojs/gsap':
         specifier: workspace:*
         version: link:../packages/gsap
@@ -283,6 +286,34 @@ importers:
       atropos:
         specifier: ^2.0.2
         version: 2.0.2
+      ziko:
+        specifier: 'catalog:'
+        version: 2.0.0-beta.9
+    devDependencies:
+      '@rollup/plugin-commonjs':
+        specifier: 'catalog:'
+        version: 29.0.3(rollup@4.63.1)
+      '@rollup/plugin-node-resolve':
+        specifier: 'catalog:'
+        version: 16.0.3(rollup@4.63.1)
+      '@rollup/plugin-terser':
+        specifier: 'catalog:'
+        version: 1.0.0(rollup@4.63.1)
+      cross-env:
+        specifier: 'catalog:'
+        version: 10.1.0
+      rollup:
+        specifier: 'catalog:'
+        version: 4.63.1
+
+  packages/confetti:
+    dependencies:
+      canvas-confetti:
+        specifier: ^1.9.4
+        version: 1.9.4
+      zextra:
+        specifier: 'catalog:'
+        version: 1.15.0
       ziko:
         specifier: 'catalog:'
         version: 2.0.0-beta.9
@@ -938,6 +969,9 @@ packages:
 
   buffer-from@1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
+
+  canvas-confetti@1.9.4:
+    resolution: {integrity: sha512-yxQbJkAVrFXWNbTUjPqjF7G+g6pDotOUHGbkZq2NELZUMDpiJ85rIEazVb8GTaAptNW2miJAXbs1BtioA251Pw==}
 
   colorjs.io@0.6.1:
     resolution: {integrity: sha512-8lyR2wHzuIykCpqHKgluGsqQi5iDm3/a2IgP2GBZrasn2sBRkE4NOGsglZxWLs/jZQoNkmA/KM/8NV16rLUdBg==}
@@ -1958,6 +1992,8 @@ snapshots:
   atropos@2.0.2: {}
 
   buffer-from@1.1.2: {}
+
+  canvas-confetti@1.9.4: {}
 
   colorjs.io@0.6.1: {}
 
