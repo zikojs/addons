@@ -1,6 +1,6 @@
 {
   "name": "@zikojs/p5",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Reactive p5.js integration wrapper for the ZikoJS framework that turns p5.js sketches into native, state-driven UI components",
   "type": "module",
   "publishConfig": {

@@ -1,108 +1,206 @@
-/**
- * Base Class for 2D P5 Objects
- */
-class P52DObject {
+export function evaluateValue(val, p, currentValue) {
+  if (typeof val === "function") {
+    return val(currentValue, p);
+  }
+  return val;
+}
+
+export class P52DObject {
   constructor(props = {}) {
     this.props = { ...props };
-    this._translation = { x: 0, y: 0 };
+
+    // Transforms internal state
+    this._pos = { 
+      x: props.x ?? 0, 
+      y: props.y ?? 0 
+    };
+    this._rot = { 
+      angle: props.rot ?? 0 
+    };
+    this._scale = { 
+      x: props.scaleX ?? props.scale ?? 1, 
+      y: props.scaleY ?? props.scale ?? 1 
+    };
+
+    // Dimension control: "relative" | "absolute" | "percentage"
+    this._dimMode = props.dimMode ?? props.dimensionMode ?? "relative";
+
     this._style = {
       fill: props.fill,
       stroke: props.stroke,
       strokeWeight: props.strokeWeight,
       noFill: props.noFill ?? false,
-      noStroke: props.noStroke ?? false
+      noStroke: props.noStroke ?? false,
+      ellipseMode: props.ellipseMode,
+      rectMode: props.rectMode
     };
   }
 
-  /**
-   * Sets local translation offset
-   */
-  translate(x = 0, y = 0) {
-    this._translation = { x, y };
-    return this; // Enable method chaining
+  // --- GETTERS & SETTERS FOR DIMENSION MODE ---
+
+  get dimMode() {
+    return this._dimMode;
   }
 
   /**
-   * Configures visual styling properties
+   * Sets dimension mode:
+   * .dim("relative")  - Fits canvas view coordinate units (default)
+   * .dim("absolute")  - Preserves exact screen pixel sizes
+   * .dim("percentage")- Scales as a fraction (0.0 to 1.0) of parent width/height
    */
+  dim(mode) {
+    if (["relative", "absolute", "percentage"].includes(mode)) {
+      this._dimMode = mode;
+    }
+    return this;
+  }
+
+  // --- GETTERS ---
+
+  get px() { return this._pos.x; }
+  get py() { return this._pos.y; }
+  get rx() { return this._rot.angle; }
+  get ry() { return this._rot.angle; }
+  get sx() { return this._scale.x; }
+  get sy() { return this._scale.y; }
+
+  // --- TRANSFORM METHODS ---
+
+  pos({ x, y } = {}) {
+    if (x !== undefined) {
+      this._pos.x = typeof x === "function" ? x(this._pos.x) : x;
+    }
+    if (y !== undefined) {
+      this._pos.y = typeof y === "function" ? y(this._pos.y) : y;
+    }
+    return this;
+  }
+
+  rot(val) {
+    const angleVal = typeof val === "object" && val !== null ? val.angle : val;
+    if (angleVal !== undefined) {
+      this._rot.angle = typeof angleVal === "function" ? angleVal(this._rot.angle) : angleVal;
+    }
+    return this;
+  }
+
+  scale(val) {
+    if (typeof val === "number" || typeof val === "function") {
+      const s = typeof val === "function" ? val(this._scale.x) : val;
+      this._scale.x = s;
+      this._scale.y = s;
+    } else if (typeof val === "object" && val !== null) {
+      if (val.x !== undefined) {
+        this._scale.x = typeof val.x === "function" ? val.x(this._scale.x) : val.x;
+      }
+      if (val.y !== undefined) {
+        this._scale.y = typeof val.y === "function" ? val.y(this._scale.y) : val.y;
+      }
+    }
+    return this;
+  }
+
   style(options = {}) {
     Object.assign(this._style, options);
-    return this; // Enable method chaining
+    return this;
   }
 
   /**
-   * Applies styling and transformations to the p5 instance context
+   * Resolves raw dimension values to canvas units depending on dimMode
    */
+  resolveDimension(val, p, canvas) {
+    const evaluated = evaluateValue(val, p, val);
+    if (typeof evaluated !== "number") return evaluated;
+
+    switch (this._dimMode) {
+      case "absolute": {
+        const matrix = p.drawingContext.getTransform();
+        const currentScaleX = Math.hypot(matrix.a, matrix.b) || 1;
+        return evaluated / currentScaleX;
+      }
+
+      case "percentage": {
+        const viewWidth = canvas?._viewBounds 
+          ? (canvas._viewBounds.xmax - canvas._viewBounds.xmin) 
+          : p.width;
+        return evaluated * viewWidth;
+      }
+
+      case "relative":
+      default:
+        return evaluated;
+    }
+  }
+
   applyState(p) {
-    // Handle Fill
+    // 1. Context Modes
+    if (this._style.ellipseMode) p.ellipseMode(p[this._style.ellipseMode]);
+    if (this._style.rectMode) p.rectMode(p[this._style.rectMode]);
+
+    // 2. Fill
     if (this._style.noFill) {
       p.noFill();
-    } else if (this._style.fill) {
-      const fillVal = typeof this._style.fill === "function" ? this._style.fill(p) : this._style.fill;
+    } else if (this._style.fill !== undefined) {
+      const fillVal = evaluateValue(this._style.fill, p, null);
       p.fill(fillVal);
     }
 
-    // Handle Stroke
+    // 3. Stroke & Stroke Weight
     if (this._style.noStroke) {
       p.noStroke();
-    } else if (this._style.stroke) {
-      const strokeVal = typeof this._style.stroke === "function" ? this._style.stroke(p) : this._style.stroke;
+    } else if (this._style.stroke !== undefined) {
+      const strokeVal = evaluateValue(this._style.stroke, p, null);
       p.stroke(strokeVal);
     }
 
-    if (this._style.strokeWeight) {
-      const weightVal = typeof this._style.strokeWeight === "function" 
-        ? this._style.strokeWeight(p) 
-        : this._style.strokeWeight;
+    if (this._style.strokeWeight !== undefined) {
+      const weightVal = evaluateValue(this._style.strokeWeight, p, null);
       p.strokeWeight(weightVal);
     }
 
-    // Handle Translation
-    const tx = typeof this._translation.x === "function" ? this._translation.x(p) : this._translation.x;
-    const ty = typeof this._translation.y === "function" ? this._translation.y(p) : this._translation.y;
+    // 4. Transforms
+    const tx = evaluateValue(this._pos.x, p, this._pos.x);
+    const ty = evaluateValue(this._pos.y, p, this._pos.y);
     if (tx !== 0 || ty !== 0) {
       p.translate(tx, ty);
     }
+
+    const rotAngle = evaluateValue(this._rot.angle, p, this._rot.angle);
+    if (rotAngle !== 0) {
+      p.rotate(rotAngle);
+    }
+
+    const sx = evaluateValue(this._scale.x, p, this._scale.x);
+    const sy = evaluateValue(this._scale.y, p, this._scale.y);
+    if (sx !== 1 || sy !== 1) {
+      p.scale(sx, sy);
+    }
   }
 
-  /**
-   * Render hook - To be overridden by subclasses
-   */
-  render(p) {
+  render(p, canvas) {
     // Override in subclass
   }
 
-  /**
-   * Main draw runner wrapping render logic in p5.push() and p5.pop()
-   */
-  draw(p) {
+  draw(p, canvas) {
     p.push();
     this.applyState(p);
-    this.render(p);
+    this.render(p, canvas);
     p.pop();
   }
 }
 
-/**
- * Circle Subclass
- */
-class P5Circle extends P52DObject {
+export class P5Circle extends P52DObject {
   constructor(props = {}) {
     super(props);
+    this.d = props.d ?? 10;
   }
 
-  render(p) {
-    const x = typeof this.props.x === "function" ? this.props.x(p) : (this.props.x ?? p.width / 2);
-    const y = typeof this.props.y === "function" ? this.props.y(p) : (this.props.y ?? p.height / 2);
-    const d = typeof this.props.d === "function" ? this.props.d(p) : (this.props.d ?? 50);
-
-    p.circle(x, y, d);
+  render(p, canvas) {
+    const d = this.resolveDimension(this.d, p, canvas);
+    p.circle(0, 0, d);
   }
 }
 
-/**
- * Factory helper function returning a P5Circle instance
- */
 export function Circle(props = {}) {
   return new P5Circle(props);
 }

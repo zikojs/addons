@@ -21,9 +21,15 @@ import { Circle } from "@zikojs/p5";
 //       p.pop();
 //     };
 //   }
-globalThis.c = Circle() 
+globalThis.c = Circle({ x: 0, d: 100, dimMode : 'absolute'}).style({
+    fill : 'red',
+    stroke : 'green'
+})
 globalThis.ca = P5Canvas({}, 
     c,
 )
+.view(-100, 100, -100, 100)
+.aspectRatio(1)
+// .render()
 
 ca.mount(document.body)
