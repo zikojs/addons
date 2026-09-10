@@ -17,6 +17,7 @@
     "@zikojs/p5": "workspace:*",
     "@zikojs/gsap": "workspace:*",
     "@zikojs/leaflet": "workspace:*",
-    "@zikojs/confetti": "workspace:*"
+    "@zikojs/canvas-confetti": "workspace:*",
+    "@zikojs/mind-elixir": "workspace:*"
   }
 }

@@ -1,7 +1,7 @@
 {
-  "name": "@zikojs/framer-motion",
+  "name": "@zikojs/mind-elixir",
   "version": "0.1.0",
-  "description": "framer-motion adapter for zikojs",
+  "description": "",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -12,17 +12,15 @@
     "watch": "cross-env NODE_ENV=development rollup --config rollup.config.js -w",
     "build": "cross-env NODE_ENV=production rollup --config rollup.config.js"
   },
-  "author": "zakaria elaloui",
+  "author": "zakaria elalaoui",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zikojs/addons.git",
-    "directory": "packages/framer-motion"
+    "directory": "packages/laeflet"
   },
   "keywords": [
     "zikojs",
-    "ziko",
-    "framer-motion",
-    "animation"
+    "mind-elixir"
   ],
   "exports": {
     ".": {
@@ -44,7 +42,8 @@
     "rollup": "catalog:"
   },
   "dependencies": {
-    "framer-motion": "^13.2.0",
+    "mind-elixir": "6.0.0-next.4",
+    "zextra": "catalog:",
     "ziko": "catalog:"
   }
 }
