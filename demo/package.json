@@ -15,6 +15,7 @@
     "ziko": "catalog:",
     "@zikojs/mermaid": "workspace:*",
     "@zikojs/p5": "workspace:*",
-    "@zikojs/gsap": "workspace:*"
+    "@zikojs/gsap": "workspace:*",
+    "@zikojs/leaflet": "workspace:*"
   }
 }

@@ -261,6 +261,9 @@ importers:
       '@zikojs/gsap':
         specifier: workspace:*
         version: link:../packages/gsap
+      '@zikojs/leaflet':
+        specifier: workspace:*
+        version: link:../packages/laeflet
       '@zikojs/mermaid':
         specifier: workspace:*
         version: link:../packages/mermaid
@@ -305,6 +308,34 @@ importers:
       gsap:
         specifier: ^3.15.0
         version: 3.15.0
+      zextra:
+        specifier: 'catalog:'
+        version: 1.15.0
+      ziko:
+        specifier: 'catalog:'
+        version: 2.0.0-beta.9
+    devDependencies:
+      '@rollup/plugin-commonjs':
+        specifier: 'catalog:'
+        version: 29.0.3(rollup@4.63.1)
+      '@rollup/plugin-node-resolve':
+        specifier: 'catalog:'
+        version: 16.0.3(rollup@4.63.1)
+      '@rollup/plugin-terser':
+        specifier: 'catalog:'
+        version: 1.0.0(rollup@4.63.1)
+      cross-env:
+        specifier: 'catalog:'
+        version: 10.1.0
+      rollup:
+        specifier: 'catalog:'
+        version: 4.63.1
+
+  packages/laeflet:
+    dependencies:
+      leaflet:
+        specifier: ^1.9.4
+        version: 1.9.4
       zextra:
         specifier: 'catalog:'
         version: 1.15.0
@@ -1239,6 +1270,9 @@ packages:
 
   layout-base@2.0.1:
     resolution: {integrity: sha512-dp3s92+uNI1hWIpPGH3jK2kxE2lMjdXdr+DH8ynZHpd6PUlH6x6cbuXnoMmiNumznqaNO31xu9e79F0uuZ0JFg==}
+
+  leaflet@1.9.4:
+    resolution: {integrity: sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA==}
 
   libtess@1.2.2:
     resolution: {integrity: sha512-Nps8HPeVVcsmJxUvFLKVJcCgcz+1ajPTXDVAVPs6+giOQP4AHV31uZFFkh+CKow/bkB7GbZWKmwmit7myaqDSw==}
@@ -2254,6 +2288,8 @@ snapshots:
   layout-base@1.0.2: {}
 
   layout-base@2.0.1: {}
+
+  leaflet@1.9.4: {}
 
   libtess@1.2.2: {}
 

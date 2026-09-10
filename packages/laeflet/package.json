@@ -1,0 +1,49 @@
+{
+  "name": "@zikojs/leaflet",
+  "version": "0.1.0",
+  "description": "",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=development rollup --config rollup.config.js",
+    "watch": "cross-env NODE_ENV=development rollup --config rollup.config.js -w",
+    "build": "cross-env NODE_ENV=production rollup --config rollup.config.js"
+  },
+  "author": "zakaria elalaoui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zikojs/addons.git",
+    "directory": "packages/laeflet"
+  },
+  "keywords": [
+    "zikojs",
+    "laeflet"
+  ],
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "types": "./src/index.d.ts"
+    }
+  },
+  "files": [
+    "src",
+    "dist",
+    "LICENCE"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "catalog:",
+    "@rollup/plugin-node-resolve": "catalog:",
+    "@rollup/plugin-terser": "catalog:",
+    "cross-env": "catalog:",
+    "rollup": "catalog:"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "zextra": "catalog:",
+    "ziko": "catalog:"
+  }
+}
