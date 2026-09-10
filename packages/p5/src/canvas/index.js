@@ -8,7 +8,6 @@ export class UIP5Canvas extends UIElement {
     this.props = props;
     this._items = items.flat();
 
-    // Center canvas inside the container wrapper element
     this.style({
       border: "2px darkblue solid",
       display: "flex",
@@ -26,7 +25,6 @@ export class UIP5Canvas extends UIElement {
     const initialWidth = props.width || window.innerWidth;
     const initialHeight = props.height || window.innerHeight;
 
-    // Apply container size
     this._containerWidth = initialWidth;
     this._containerHeight = initialHeight;
 
@@ -34,15 +32,11 @@ export class UIP5Canvas extends UIElement {
     this._width = w;
     this._height = h;
 
-    // Custom view state: { xmin, xmax, ymin, ymax, preserveAspectRatio }
     this._viewBounds = props.view || null;
 
     this.setup();
   }
 
-  /**
-   * Computes canvas dimensions based on container size and aspect ratio constraint.
-   */
   _computeDimensions(containerWidth, containerHeight) {
     if (!this._aspectRatio) return [containerWidth, containerHeight];
 
@@ -57,10 +51,6 @@ export class UIP5Canvas extends UIElement {
     return [w, h];
   }
 
-  /**
-   * Gets or sets the canvas aspect ratio (e.g., 1, 16/9, 4/3).
-   * Pass null to disable aspect ratio scaling.
-   */
   aspectRatio(ratio) {
     if (ratio === undefined) return this._aspectRatio;
     this._aspectRatio = ratio;
@@ -71,7 +61,6 @@ export class UIP5Canvas extends UIElement {
   setup() {
     this.p5 = new p5((p) => {
       this.instance = p;
-
       p.setup = () => {
         const mode = this.renderer === "WEBGL" ? p.WEBGL : p.P2D;
         p.createCanvas(this._width, this._height, mode);
@@ -79,20 +68,16 @@ export class UIP5Canvas extends UIElement {
           this.props.setup(p);
         }
       };
-
       p.draw = () => {
         this.background(p);
-
         p.push();
         this.applyViewTransform(p);
         this.render(p);
         p.pop();
-
         if (typeof this.props.draw === "function") {
           this.props.draw(p);
         }
       };
-
       p.windowResized = () => {
         if (typeof this.props.onResize === "function") {
           this.props.onResize(p);
@@ -103,9 +88,6 @@ export class UIP5Canvas extends UIElement {
     }, this.element);
   }
 
-  /**
-   * Defines a custom coordinate system for the canvas.
-   */
   view(xmin, xmax, ymin, ymax, options = {}) {
     this._viewBounds = {
       xmin,
@@ -117,9 +99,6 @@ export class UIP5Canvas extends UIElement {
     return this;
   }
 
-  /**
-   * Resets the view back to default pixel coordinates.
-   */
   resetView() {
     this._viewBounds = null;
     return this;
@@ -127,19 +106,14 @@ export class UIP5Canvas extends UIElement {
 
   applyViewTransform(p) {
     if (!this._viewBounds) return;
-
     let { xmin, xmax, ymin, ymax, preserveAspectRatio } = this._viewBounds;
-
     let sx = this._width / (xmax - xmin);
     let sy = this._height / (ymax - ymin);
-
     if (preserveAspectRatio) {
       const minScale = Math.min(Math.abs(sx), Math.abs(sy));
       sx = Math.sign(sx) * minScale;
       sy = Math.sign(sy) * minScale;
     }
-
-    // Flip Y-axis so positive Y goes upwards, translate origin according to bounds
     p.scale(sx, -sy);
     p.translate(-xmin, -ymax);
   }
@@ -186,17 +160,13 @@ export class UIP5Canvas extends UIElement {
   resize(width = window.innerWidth, height = window.innerHeight) {
     this._containerWidth = width;
     this._containerHeight = height;
-
-    // Update container element styles if explicit width/height are set
     this.style({
       width: typeof width === "number" ? `${width}px` : width,
       height: typeof height === "number" ? `${height}px` : height,
     });
-
     const [w, h] = this._computeDimensions(width, height);
     this._width = w;
     this._height = h;
-
     if (this.instance) {
       this.instance.resizeCanvas(w, h);
     }
