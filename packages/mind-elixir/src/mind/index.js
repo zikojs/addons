@@ -22,7 +22,7 @@ export class UIMindNode {
       id: this.id,
       topic: this.topic,
       expanded: this.props.expanded ?? true,
-      direction: this.props.direction, // 0: left, 1: right (for root main branches)
+      direction: this.props.direction, // 0: left, 1: right (for main root branches)
       style: this.props.style,
       tags: this.props.tags,
       icons: this.props.icons,
@@ -30,7 +30,7 @@ export class UIMindNode {
       children: this.children.map((child) => child.toNodeData()),
     };
 
-    // Clean up undefined properties for Mind-Elixir
+    // Clean up undefined properties
     Object.keys(nodeObj).forEach(
       (key) => nodeObj[key] === undefined && delete nodeObj[key]
     );
@@ -39,12 +39,11 @@ export class UIMindNode {
   }
 }
 
-// Declarative Helper Functions
+// Declarative Factory Helper
 export const MindNode = (topic, props, ...children) => {
   if (typeof props === "object" && !(props instanceof UIMindNode)) {
     return new UIMindNode(topic, props, ...children);
   }
-  // Handles signature without props object: MindNode("Topic", child1, child2)
   return new UIMindNode(
     topic,
     {},
@@ -55,14 +54,42 @@ export const MindNode = (topic, props, ...children) => {
 export const RootNode = MindNode;
 
 /**
+ * Converter utility: Transforms raw Mind-Elixir node data into a UIMindNode tree
+ */
+export function dataToMindNodes(data) {
+  if (!data) return null;
+
+  // Handle full getData() envelope or raw nodeData
+  const node = data.nodeData ? data.nodeData : data;
+
+  const { id, topic, children, ...props } = node;
+
+  const childNodes = Array.isArray(children)
+    ? children.map((child) => dataToMindNodes(child)).filter(Boolean)
+    : [];
+
+  return MindNode(topic, { id, ...props }, ...childNodes);
+}
+
+/**
  * Main Mind Map Container Component
  */
 export class UIMindMapContainer extends UIElement {
-  constructor(props = {}, rootNode) {
+  constructor(props = {}, target) {
     super({ element: "div" });
     this.props = props;
-    this._rootNode = rootNode instanceof UIMindNode ? rootNode : null;
     this.mind = null;
+
+    // Resolve initial root node from declarative component, props.data, or raw object target
+    const inputData = props.data || target;
+
+    if (inputData instanceof UIMindNode) {
+      this._rootNode = inputData;
+    } else if (typeof inputData === "object" && inputData !== null) {
+      this._rootNode = dataToMindNodes(inputData);
+    } else {
+      this._rootNode = null;
+    }
 
     const width = props.width || "100%";
     const height = props.height || "500px";
@@ -82,7 +109,7 @@ export class UIMindMapContainer extends UIElement {
 
     const options = {
       el: this.element,
-      direction: this.props.direction ?? MindElixir.SIDE, // LEFT, RIGHT, SIDE
+      direction: this.props.direction ?? MindElixir.SIDE,
       draggable: this.props.draggable ?? true,
       contextMenu: this.props.contextMenu ?? true,
       toolBar: this.props.toolBar ?? true,
@@ -94,7 +121,6 @@ export class UIMindMapContainer extends UIElement {
 
     this.mind = new MindElixir(options);
 
-    // Initial Data Payload construction
     const nodeData = this._rootNode
       ? this._rootNode.toNodeData()
       : { id: "root", topic: "Root Topic" };
@@ -104,39 +130,43 @@ export class UIMindMapContainer extends UIElement {
       linkData: this.props.linkData || {},
     });
 
-    // Attach Event Handlers
     if (this.props.events) {
       Object.entries(this.props.events).forEach(([event, handler]) => {
-        this.mind.bus.on(event, handler);
+        // ✅ Correct
+        if (typeof this.mind.bus.addListener === "function") {
+          this.mind.bus.addListener(event, handler);
+        } else if (typeof this.mind.bus.on === "function") {
+          this.mind.bus.on(event, handler);
+        }
       });
     }
   }
 
   /**
-   * Export the current mind map data structure
+   * Export raw mind map state
    */
   getData() {
     return this.mind ? this.mind.getData() : null;
   }
 
   /**
-   * Select a node by ID dynamically
+   * Export current state as a declarative UIMindNode tree
    */
-  selectNode(id) {
-    if (this.mind) {
-      const el = this.mind.findEle(id);
-      if (el) this.mind.selectNode(el);
-    }
-    return this;
+  getMindNodes() {
+    const raw = this.getData();
+    return raw ? dataToMindNodes(raw) : null;
   }
 
   /**
-   * Refresh/re-render the mind map structure
+   * Refresh/re-render map using either UIMindNode or raw data object
    */
-  refresh(newRootNode) {
-    if (newRootNode instanceof UIMindNode) {
-      this._rootNode = newRootNode;
+  refresh(newData) {
+    if (newData instanceof UIMindNode) {
+      this._rootNode = newData;
+    } else if (typeof newData === "object" && newData !== null) {
+      this._rootNode = dataToMindNodes(newData);
     }
+
     if (this.mind && this._rootNode) {
       this.mind.refresh({
         nodeData: this._rootNode.toNodeData(),

@@ -45,3 +45,12 @@ const map = MindMap(
 
 // Append to DOM
 map.mount(document.body);
+
+const rawNodeData = {
+  id: "root_2",
+  topic: "Direct Object Input",
+  children: [{ id: "sub1", topic: "Subtopic" }]
+};
+
+const map2 = MindMap({ height: "400px" }, rawNodeData);
+map2.mount(document.body);
