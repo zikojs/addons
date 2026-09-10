@@ -1,0 +1,50 @@
+{
+  "name": "@zikojs/framer-motion",
+  "version": "0.1.0",
+  "description": "framer-motion adapter for zikojs",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=development rollup --config rollup.config.js",
+    "watch": "cross-env NODE_ENV=development rollup --config rollup.config.js -w",
+    "build": "cross-env NODE_ENV=production rollup --config rollup.config.js"
+  },
+  "author": "zakaria elaloui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zikojs/addons.git",
+    "directory": "packages/framer-motion"
+  },
+  "keywords": [
+    "zikojs",
+    "ziko",
+    "framer-motion",
+    "animation"
+  ],
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "types": "./src/index.d.ts"
+    }
+  },
+  "files": [
+    "src",
+    "dist",
+    "LICENCE"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "catalog:",
+    "@rollup/plugin-node-resolve": "catalog:",
+    "@rollup/plugin-terser": "catalog:",
+    "cross-env": "catalog:",
+    "rollup": "catalog:"
+  },
+  "dependencies": {
+    "framer-motion": "^3.15.0",
+    "ziko": "catalog:"
+  }
+}

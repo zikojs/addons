@@ -3,7 +3,7 @@ import {
   Confetti,
   Burst,
   Fireworks,
-} from "@zikojs/confetti";
+} from "../../packages/confetti/src";
 
 const { button : btn} = tags
 
