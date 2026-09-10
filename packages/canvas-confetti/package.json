@@ -1,5 +1,5 @@
 {
-  "name": "@zikojs/confetti",
+  "name": "@zikojs/canvas-confetti",
   "version": "0.1.0",
   "description": "",
   "type": "module",
@@ -16,11 +16,11 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zikojs/addons.git",
-    "directory": "packages/confetti"
+    "directory": "packages/canvas-confetti"
   },
   "keywords": [
     "zikojs",
-    "confetti"
+    "canvas-confetti"
   ],
   "exports": {
     ".": {
