@@ -8,7 +8,7 @@ const defaultProps = JSON.stringify(
     fill: "none",
     width: 24,
     height: 24,
-    stroke: "green",
+    stroke: "darkblue",
     "stroke-width": 2,
     "stroke-linecap": "round",
     "stroke-linejoin": "round",
@@ -27,15 +27,16 @@ const DUPLICATED = [
 const generate_component = (Icon_name, items) => {
   return `
 import { tags } from 'ziko/dom';
-const { svg } = tags;
-export const ${Icon_name} = (props) => 
+const { svg, i } = tags;
+export const ${Icon_name} = (props) => i(
     svg(
         {
-            ...${defaultProps.slice(0, -2)}
+          ...${defaultProps.slice(0, -2)}
+          },
+          ...props
         },
-        ...props
-    },
     ${items}
+    )
 )
 export default ${Icon_name};
 `.trimStart()

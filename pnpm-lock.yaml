@@ -227,8 +227,8 @@ catalogs:
       specifier: ^1.15.0
       version: 1.15.0
     ziko:
-      specifier: 2.0.0-beta.9
-      version: 2.0.0-beta.9
+      specifier: 2.0.0-beta.10
+      version: 2.0.0-beta.10
 
 importers:
 
@@ -254,7 +254,7 @@ importers:
         version: 8.2.2(terser@5.51.2)(yaml@2.9.0)
       ziko:
         specifier: 'catalog:'
-        version: 2.0.0-beta.9
+        version: 2.0.0-beta.10
 
   demo:
     dependencies:
@@ -278,7 +278,7 @@ importers:
         version: link:../packages/p5
       ziko:
         specifier: 'catalog:'
-        version: 2.0.0-beta.9
+        version: 2.0.0-beta.10
     devDependencies:
       vite:
         specifier: 'catalog:'
@@ -291,7 +291,7 @@ importers:
         version: 2.0.2
       ziko:
         specifier: 'catalog:'
-        version: 2.0.0-beta.9
+        version: 2.0.0-beta.10
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: 'catalog:'
@@ -319,7 +319,7 @@ importers:
         version: 1.15.0
       ziko:
         specifier: 'catalog:'
-        version: 2.0.0-beta.9
+        version: 2.0.0-beta.10
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: 'catalog:'
@@ -344,7 +344,7 @@ importers:
         version: 13.2.0
       ziko:
         specifier: 'catalog:'
-        version: 2.0.0-beta.9
+        version: 2.0.0-beta.10
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: 'catalog:'
@@ -372,7 +372,7 @@ importers:
         version: 1.15.0
       ziko:
         specifier: 'catalog:'
-        version: 2.0.0-beta.9
+        version: 2.0.0-beta.10
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: 'catalog:'
@@ -400,7 +400,7 @@ importers:
         version: 1.15.0
       ziko:
         specifier: 'catalog:'
-        version: 2.0.0-beta.9
+        version: 2.0.0-beta.10
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: 'catalog:'
@@ -428,7 +428,7 @@ importers:
         version: 1.15.0
       ziko:
         specifier: 'catalog:'
-        version: 2.0.0-beta.9
+        version: 2.0.0-beta.10
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: 'catalog:'
@@ -453,7 +453,7 @@ importers:
         version: 1.43.0
       ziko:
         specifier: 'catalog:'
-        version: 2.0.0-beta.9
+        version: 2.0.0-beta.10
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: 'catalog:'
@@ -484,7 +484,7 @@ importers:
         version: 1.15.0
       ziko:
         specifier: 'catalog:'
-        version: 2.0.0-beta.9
+        version: 2.0.0-beta.10
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: 'catalog:'
@@ -512,7 +512,7 @@ importers:
         version: 1.15.0
       ziko:
         specifier: 'catalog:'
-        version: 2.0.0-beta.9
+        version: 2.0.0-beta.10
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: 'catalog:'
@@ -540,7 +540,7 @@ importers:
         version: 1.15.0
       ziko:
         specifier: 'catalog:'
-        version: 2.0.0-beta.9
+        version: 2.0.0-beta.10
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: 'catalog:'
@@ -1695,8 +1695,8 @@ packages:
     resolution: {integrity: sha512-rKPNlAQRHE12dAsWhIo4vGcmRGhra4Qp5ZnX9Gkp0Vcj2nHkbOFx1obFtrZbEtNfIjBpe0SLMvCAISqJq++2Cw==}
     hasBin: true
 
-  ziko@2.0.0-beta.9:
-    resolution: {integrity: sha512-x7bQ/rwJinfk7edFfe2Kslw4F8fkhaDLOLcWDxEGl9dhQFCkEmOl51oGQIyES8BxU1fP4iZkts6szfLSE716tw==}
+  ziko@2.0.0-beta.10:
+    resolution: {integrity: sha512-bSHLyPWlVw/r9zXYSc/8iG34yaEHhPtXusXQ4+CFXQ90UetElTEXrTjZpc3jhXlJpDalpk7nGax1VenKh4KwGQ==}
 
   zod@4.5.4:
     resolution: {integrity: sha512-sC95tT5iHHH9gtpj6A81kh+NEaRAUFN+qlUPDUbRfOMvNf5QCBqsb3WgvnpVtK5Y+4UfA6KqufotuTvMGiTlsA==}
@@ -2736,6 +2736,6 @@ snapshots:
 
   ziko@1.10.0: {}
 
-  ziko@2.0.0-beta.9: {}
+  ziko@2.0.0-beta.10: {}
 
   zod@4.5.4: {}
