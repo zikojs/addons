@@ -47,5 +47,23 @@
     "gsap": "^3.15.0",
     "zextra": "catalog:",
     "ziko": "catalog:"
+  },
+  "overrides": {
+    "@videojs/http-streaming": {
+      "@xmldom/xmldom": "0.9.12"
+    },
+    "@xmldom/xmldom": "0.9.12",
+    "mpd-parser": {
+      "@xmldom/xmldom": "0.9.12"
+    },
+    "video.js": {
+      "@xmldom/xmldom": "0.9.12"
+    },
+    "videojs-contrib-quality-levels": {
+      "@xmldom/xmldom": "0.9.12"
+    },
+    "zextra": {
+      "@xmldom/xmldom": "0.9.12"
+    }
   }
 }
