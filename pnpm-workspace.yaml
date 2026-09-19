@@ -4,8 +4,8 @@ packages:
 
 # Define a catalog of version ranges.
 catalog:
-  ziko: 2.0.0-beta.10
-  zextra: ^1.15.0
+  ziko: latest
+  zextra: latest
   vite: ^8.2.2
   "@rollup/plugin-commonjs": "^29.0.3"
   "@rollup/plugin-node-resolve": "^16.0.3"
@@ -14,5 +14,5 @@ catalog:
   "rollup": "^4.63.1"
 
 minimumReleaseAgeExclude:
-  - ziko@2.0.0-beta.10
+  - ziko@2.0.0-beta.15
   - '@rolldown/binding-openharmony-arm64@1.2.8'
