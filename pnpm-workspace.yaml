@@ -14,5 +14,5 @@ catalog:
   "rollup": "^4.63.1"
 
 minimumReleaseAgeExclude:
-  - ziko@2.0.0-beta.15
+  - ziko@2.0.0-beta.15.1
   - '@rolldown/binding-openharmony-arm64@1.2.8'

@@ -1,6 +1,0 @@
-export * from './Layer/index.js'
-export * from './Circle/index.js'
-export * from './Marker/index.js'
-export * from './Polygon/index.js'
-export * from './Polyline/index.js'
-export * from './Tile/index.js'
