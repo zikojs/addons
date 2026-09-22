@@ -510,6 +510,9 @@ importers:
       mind-elixir:
         specifier: 6.0.0-next.4
         version: 6.0.0-next.4
+      yaml:
+        specifier: ^2.9.1
+        version: 2.9.1
       zextra:
         specifier: 'catalog:'
         version: 1.15.0

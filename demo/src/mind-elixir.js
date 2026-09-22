@@ -1,9 +1,9 @@
-import { MindMap, MindNode } from "@zikojs/mind-elixir";
+import { MindMap, MindNode, yaml2MindMapRowData } from "@zikojs/mind-elixir";
 
 // Declarative Mind Map Construction
 const map = MindMap(
   {
-    height: "600px",
+    height: "400px",
     direction: 2, // Side layout
     events: {
       selectNode: (node) => console.log("Selected node:", node),
@@ -38,7 +38,19 @@ const map = MindMap(
       "Tooling & Routers",
       { direction: 1 },
       MindNode("UFBR Router"),
-      MindNode("@zikojs/server")
+      MindNode("@zikojs/server"),
+      MindNode(
+  "Core UI Engine---------------",
+  {
+    id: "core",
+    direction: 0,
+    expanded: true,
+    tags: ["Core"],
+    style: {},
+    icons: [],
+    hyperLink: "https://example.com",
+  }
+)
     )
   )
 );
@@ -54,3 +66,19 @@ const rawNodeData = {
 
 const map2 = MindMap({ height: "400px" }, rawNodeData);
 map2.mount(document.body);
+
+const data = `
+Root
+  Child 1
+    Nested 11
+    Nested 12
+  Child 2
+    Nested 21
+    Nested 22
+  Child 3
+    Nested 31
+`
+// console.log()
+
+const map3 = MindMap({ height: "400px" }, yaml2MindMapRowData(data));
+map3.mount(document.body);

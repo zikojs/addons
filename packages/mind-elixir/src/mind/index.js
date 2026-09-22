@@ -3,9 +3,6 @@ import { call_with_optional_props } from "ziko/dom/internal-utils";
 import MindElixir from "mind-elixir";
 import "mind-elixir/style";
 
-/**
- * Declarative Mind Map Node Class
- */
 export class UIMindNode {
   constructor(topic, props = {}, ...children) {
     this.id = props.id || `node_${Math.random().toString(36).substr(2, 9)}`;
@@ -14,9 +11,6 @@ export class UIMindNode {
     this.children = children.flat().filter((child) => child instanceof UIMindNode);
   }
 
-  /**
-   * Converts node hierarchy to Mind-Elixir data format
-   */
   toNodeData() {
     const nodeObj = {
       id: this.id,
@@ -30,7 +24,6 @@ export class UIMindNode {
       children: this.children.map((child) => child.toNodeData()),
     };
 
-    // Clean up undefined properties
     Object.keys(nodeObj).forEach(
       (key) => nodeObj[key] === undefined && delete nodeObj[key]
     );
@@ -39,7 +32,6 @@ export class UIMindNode {
   }
 }
 
-// Declarative Factory Helper
 export const MindNode = (topic, props, ...children) => {
   if (typeof props === "object" && !(props instanceof UIMindNode)) {
     return new UIMindNode(topic, props, ...children);
@@ -53,13 +45,9 @@ export const MindNode = (topic, props, ...children) => {
 
 export const RootNode = MindNode;
 
-/**
- * Converter utility: Transforms raw Mind-Elixir node data into a UIMindNode tree
- */
 export function dataToMindNodes(data) {
   if (!data) return null;
 
-  // Handle full getData() envelope or raw nodeData
   const node = data.nodeData ? data.nodeData : data;
 
   const { id, topic, children, ...props } = node;
@@ -71,16 +59,12 @@ export function dataToMindNodes(data) {
   return MindNode(topic, { id, ...props }, ...childNodes);
 }
 
-/**
- * Main Mind Map Container Component
- */
 export class UIMindMapContainer extends UIElement {
   constructor(props = {}, target) {
     super({ element: "div" });
     this.props = props;
     this.mind = null;
 
-    // Resolve initial root node from declarative component, props.data, or raw object target
     const inputData = props.data || target;
 
     if (inputData instanceof UIMindNode) {
@@ -142,24 +126,15 @@ export class UIMindMapContainer extends UIElement {
     }
   }
 
-  /**
-   * Export raw mind map state
-   */
   getData() {
     return this.mind ? this.mind.getData() : null;
   }
 
-  /**
-   * Export current state as a declarative UIMindNode tree
-   */
   getMindNodes() {
     const raw = this.getData();
     return raw ? dataToMindNodes(raw) : null;
   }
 
-  /**
-   * Refresh/re-render map using either UIMindNode or raw data object
-   */
   refresh(newData) {
     if (newData instanceof UIMindNode) {
       this._rootNode = newData;
