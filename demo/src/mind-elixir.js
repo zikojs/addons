@@ -1,4 +1,4 @@
-import { MindMap, MindNode, yaml2MindMapRowData } from "@zikojs/mind-elixir";
+import { MindMap, MindNode, tree2MindElixirData } from "@zikojs/mind-elixir";
 
 // Declarative Mind Map Construction
 const map = MindMap(
@@ -6,7 +6,7 @@ const map = MindMap(
     height: "400px",
     direction: 2, // Side layout
     events: {
-      selectNode: (node) => console.log("Selected node:", node),
+      selectNodes: (node) => console.log("Selected node:", node),
     },
   },
   // Root Node
@@ -64,12 +64,17 @@ const rawNodeData = {
   children: [{ id: "sub1", topic: "Subtopic" }]
 };
 
-const map2 = MindMap({ height: "400px" }, rawNodeData);
-map2.mount(document.body);
+// const map2 = MindMap({ height: "400px" }, rawNodeData);
+// map2.mount(document.body);
 
 const data = `
 Root
   Child 1
+    @tags: [ziko]
+    @hyperLink : #
+
+    @style :
+      background: orange
     Nested 11
     Nested 12
   Child 2
@@ -80,5 +85,5 @@ Root
 `
 // console.log()
 
-const map3 = MindMap({ height: "400px" }, yaml2MindMapRowData(data));
-map3.mount(document.body);
+// const map3 = MindMap({ height: "400px" }, tree2MindElixirData(data));
+// map3.mount(document.body);
