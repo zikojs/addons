@@ -1,6 +1,6 @@
 {
   "name": "@zikojs/mind-elixir",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "",
   "type": "module",
   "publishConfig": {
@@ -26,6 +26,9 @@
     ".": {
       "import": "./src/index.js",
       "types": "./src/index.d.ts"
+    },
+    "./utils":{
+      "import": "./src/utils/index.js"
     }
   },
   "files": [

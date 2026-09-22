@@ -87,3 +87,7 @@ Root
 
 // const map3 = MindMap({ height: "400px" }, tree2MindElixirData(data));
 // map3.mount(document.body);
+
+const yamlData = `
+
+`
