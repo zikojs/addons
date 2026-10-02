@@ -1,7 +1,7 @@
 {
   "name": "@zikojs/mind-elixir",
-  "version": "0.8.0",
-  "description": "",
+  "version": "0.8.1",
+  "description": "A ZikoJS declarative wrapper for Mind Elixir",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -40,8 +40,8 @@
       "types": "./src/core/index.d.ts"
     },
     "./utils":{
-      "import": "./src/index.js",
-      "types": "./src/index.d.ts"
+      "import": "./src/utils/index.js",
+      "types": "./src/utils/index.d.ts"
     }
   },
   "files": [
