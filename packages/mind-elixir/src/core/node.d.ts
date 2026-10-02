@@ -1,3 +1,18 @@
+export interface MindElixirNodeData {
+  id: string;
+  topic: string;
+  root?: boolean;
+  expanded?: boolean;
+  direction?: 0 | 1;
+  style?: Record<string, string | number>;
+  tags?: string[];
+  icons?: string[];
+  hyperLink?: string;
+  children?: MindElixirNodeData[];
+  parent?: MindElixirNodeData;
+  [key: string]: unknown;
+}
+
 export interface UIMindNodeProps {
   id?: string;
   expanded?: boolean;
@@ -21,18 +36,7 @@ export class UIMindNode {
     ...children: Array<UIMindNode | UIMindNode[]>
   );
 
-  toNodeData(): {
-    id: string;
-    topic: string;
-    expanded: boolean;
-    direction?: 0 | 1;
-    style?: Record<string, string | number>;
-    tags?: string[];
-    icons?: string[];
-    hyperLink?: string;
-    children: ReturnType<UIMindNode["toNodeData"]>[];
-    [key: string]: unknown;
-  };
+  toNodeData(): MindElixirNodeData;
 }
 
 export function MindNode(
@@ -47,5 +51,5 @@ export function MindNode(
 ): UIMindNode;
 
 export function dataToMindNodes(
-  data: any
+  data: MindElixirNodeData | { nodeData: MindElixirNodeData }
 ): UIMindNode | null;
