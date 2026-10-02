@@ -1,6 +1,11 @@
 import { UIElement } from "ziko/dom";
 import { call_with_optional_props } from "ziko/dom/internal-utils";
 import MindElixir from "mind-elixir";
+import {
+  plaintextToMindElixir,
+  // mindElixirToPlaintext
+} from "mind-elixir/plaintextConverter";
+
 
 export class UIMindNode {
   constructor(topic, props = {}, ...children) {
@@ -42,7 +47,7 @@ export const MindNode = (topic, props, ...children) => {
   );
 };
 
-export const RootNode = MindNode;
+// export const RootNode = MindNode;
 
 export function dataToMindNodes(data) {
   if (!data) return null;
@@ -56,6 +61,10 @@ export function dataToMindNodes(data) {
     : [];
 
   return MindNode(topic, { id, ...props }, ...childNodes);
+}
+
+export function plainTextToMindNodes(text){
+  return dataToMindNodes(plaintextToMindElixir(text))
 }
 
 export class UIMindMapContainer extends UIElement {

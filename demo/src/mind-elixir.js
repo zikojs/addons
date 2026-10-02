@@ -1,4 +1,8 @@
-import { MindMap, MindNode, tree2MindElixirData } from "@zikojs/mind-elixir";
+import { 
+  MindMap, 
+  MindNode,
+  plainTextToMindNodes
+ } from "@zikojs/mind-elixir";
 
 // Declarative Mind Map Construction
 const map = MindMap(
@@ -56,7 +60,7 @@ const map = MindMap(
 );
 
 // Append to DOM
-map.mount(document.body);
+// map.mount(document.body);
 
 const rawNodeData = {
   id: "root_2",
@@ -88,6 +92,17 @@ Root
 // const map3 = MindMap({ height: "400px" }, tree2MindElixirData(data));
 // map3.mount(document.body);
 
-const yamlData = `
+// const yamlData = `
 
+// `
+
+const map4 = MindMap({ height : '400ox'}, plainTextToMindNodes(
+  `
+- Rootll
+  - Node A [^id1]
+  - Node B [^id2]
+  - > [^id1] <-Link Label-> [^id2]
 `
+))
+
+map4.mount(document.body)
