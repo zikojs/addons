@@ -96,13 +96,14 @@ Root
 
 // `
 
-const map4 = MindMap({ height : '400ox'}, plainTextToMindNodes(
+const map4 = MindMap(
+  { height : '400ox'}, 
+  plainTextToMindNodes(
   `
-- Rootll
-  - Node A [^id1]
-  - Node B [^id2]
-  - > [^id1] <-Link Label-> [^id2]
-`
-))
+  - Root
+    - Node A [^id1]
+    - Node B [^id2]
+    - > [^id1] <-Link Label-> [^id2]
+  `))
 
 map4.mount(document.body)
