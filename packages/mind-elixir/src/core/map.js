@@ -4,12 +4,12 @@ import MindElixir from "mind-elixir";
 import { UIMindNode } from "./node.js";
 
 export class UIMindMap extends UIElement {
-  constructor(props = {}, target) {
+  constructor(props = {}) {
     super({ element: "div" });
     this.props = props;
     this.mind = null;
 
-    const inputData = props.data || target;
+    const inputData = props.data;
 
     if (inputData instanceof UIMindNode) {
       this._rootNode = inputData;
@@ -29,10 +29,10 @@ export class UIMindMap extends UIElement {
       outline: "none",
     });
 
-    requestAnimationFrame(() => this.initMindMap());
+    requestAnimationFrame(() => this.render());
   }
 
-  initMindMap() {
+  render() {
     if (this.mind) return;
 
     const options = {

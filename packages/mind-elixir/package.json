@@ -27,14 +27,20 @@
       "import": "./src/index.js",
       "types": "./src/index.d.ts"
     },
-    "./no-css*":{
+    "./no-css":{
       "import": "./src/main.js"
     },
-    "./no-css/*":{
-      "import": "./src/*/main.js"
+    "./core": {
+      "import": "./src/core/index.js",
+      "types": "./src/core/index.d.ts"
+    },
+    "./core/no-css": {
+      "import": "./src/core/main.js",
+      "types": "./src/core/index.d.ts"
     },
     "./utils":{
-      "import": "./src/utils/index.js"
+      "import": "./src/index.js",
+      "types": "./src/index.d.ts"
     }
   },
   "files": [

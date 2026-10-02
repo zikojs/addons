@@ -1,4 +1,5 @@
 import YAML from "yaml";
+import { dataToMindNodes } from '../core/node.js'
 
 export function yaml2MindElixirData(source) {
   if (typeof source !== "string") {
@@ -60,3 +61,5 @@ function normalizeNode(node, parent = undefined) {
 
   return result;
 }
+
+export const yaml2MindNodes = source => dataToMindNodes(yaml2MindElixirData(source))

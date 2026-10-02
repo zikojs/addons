@@ -1,7 +1,3 @@
-import {
-  plaintextToMindElixir,
-  // mindElixirToPlaintext
-} from "mind-elixir/plaintextConverter";
 export class UIMindNode {
   constructor(topic, props = {}, ...children) {
     this.id = props.id || `node_${Math.random().toString(36).substr(2, 9)}`;
@@ -56,6 +52,3 @@ export function dataToMindNodes(data) {
   return MindNode(topic, { id, ...props }, ...childNodes);
 }
 
-export function plainTextToMindNodes(text){
-  return dataToMindNodes(plaintextToMindElixir(text))
-}
