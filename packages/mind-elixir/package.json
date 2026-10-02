@@ -1,6 +1,6 @@
 {
   "name": "@zikojs/mind-elixir",
-  "version": "0.8.1",
+  "version": "1.0.0-alpha.1",
   "description": "A ZikoJS declarative wrapper for Mind Elixir",
   "type": "module",
   "publishConfig": {

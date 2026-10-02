@@ -2,6 +2,7 @@ import { UIElement } from "ziko/dom";
 import { call_with_optional_props } from "ziko/dom/internal-utils";
 import MindElixir from "mind-elixir";
 import { UIMindNode } from "./node.js";
+import { dataToMindNodes } from "./node.js";
 
 export class UIMindMap extends UIElement {
   constructor(props = {}) {
