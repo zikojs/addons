@@ -16,7 +16,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zikojs/addons.git",
-    "directory": "packages/laeflet"
+    "directory": "packages/mind-elixir"
   },
   "keywords": [
     "zikojs",
