@@ -110,3 +110,18 @@ const map4 = MindMap(
   )
 
 map4.mount(document.body)
+
+console.log(plainTextToMindNodes(
+  `
+  - Root
+    - Node A [^id1]
+    - Node B [^id2]
+    - > [^id1] <-Link Label-> [^id2]
+  `))
+
+console.log(`
+  - Root
+    - Node A [^id1]
+    - Node B [^id2]
+    - > [^id1] <-Link Label-> [^id2]
+  `)
